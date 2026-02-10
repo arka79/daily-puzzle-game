@@ -7,6 +7,7 @@ export default async function handler(req, res) {
     const users = await sql`SELECT * FROM users`;
     res.status(200).json(users);
   } catch (error) {
-    res.status(500).json({ error: "Database error" });
+    console.error("DB ERROR:", error);
+    res.status(500).json({ error: error.message });
   }
 }
